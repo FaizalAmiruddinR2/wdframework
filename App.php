@@ -12,10 +12,15 @@ class App
 	function __construct()
 	{
 		if (isset($_GET['url'])) {
-			# code...
+			$url = explode('/', $_GET['url']);
+
+			$this->controller = ucfirst(array_shift($url)).'Controller';
+			$this->controllerMethod = array_shift($url);
+			$this->controllerMethodArgs = $url;
 		}
-		else {
-			
-		}
+
+		require_once 'controller/'.$this->controller.'.php';
+		$obj = new $this->controller;
+		return call_user_func_array([$obj, $this->controllerMethod], $this->controllerMethodArgs);
 	}
 }
