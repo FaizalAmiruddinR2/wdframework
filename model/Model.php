@@ -27,6 +27,31 @@ abstract class Model
 	public function where($column, $compare, $value)
 	{
 		$this->db->where($column, $compare, $value);
+		return $this;
+	}
+
+	/**
+	 * tambah and where ke query
+	 * @param  string $column  kolom untuk dibandingkan
+	 * @param  string $compare tanda baca pembanding (=, <>, <, >)
+	 * @param  string $value   isi yang dibandingkan
+	 */
+	public function andWhere($column, $compare, $value)
+	{
+		$this->db->andWhere($column, $compare, $value);
+		return $this;
+	}
+
+	/**
+	 * tambah or where ke query
+	 * @param  string $column  kolom untuk dibandingkan
+	 * @param  string $compare tanda baca pembanding (=, <>, <, >)
+	 * @param  string $value   isi yang dibandingkan
+	 */
+	public function orWhere($column, $compare, $value)
+	{
+		$this->db->orWhere($column, $compare, $value);
+		return $this;
 	}
 
 	/**
@@ -36,6 +61,7 @@ abstract class Model
 	public function insert($data)
 	{
 		$this->db->insert($data);
+		return $this;
 	}
 
 	/**
@@ -45,6 +71,7 @@ abstract class Model
 	public function update($data)
 	{
 		$this->db->update($data);
+		return $this;
 	}
 
 	/**

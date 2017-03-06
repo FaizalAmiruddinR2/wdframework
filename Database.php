@@ -34,6 +34,7 @@ class Database
 	public function where($column, $compare, $value)
 	{
 		$this->where .= ' WHERE '.$column.' '.$compare.' '.$value;
+		return $this;
 	}
 
 	/**
@@ -45,6 +46,7 @@ class Database
 	public function andWhere($column, $compare, $value)
 	{
 		$this->where .= ' AND '.$column.' '.$compare.' '.$value;
+		return $this;
 	}
 
 	/**
@@ -56,6 +58,7 @@ class Database
 	public function orWhere($column, $compare, $value)
 	{
 		$this->where .= ' OR '.$column.' '.$compare.' '.$value;
+		return $this;
 	}
 
 	/**
