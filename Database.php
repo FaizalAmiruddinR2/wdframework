@@ -1,14 +1,16 @@
 <?php
 
 /**
-* 
+* library database
 */
 class Database
 {
+	// pengaturan
 	private $host = 'localhost';
 	private $username = 'root';
 	private $password = 'root';
 	private $database = 'dbmahasiswa';
+	//selesai pengaturan
 
 	private $conn;
 	private $table;
@@ -16,7 +18,10 @@ class Database
 
 	function __construct($table)
 	{
+		// koneksi
 		$this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->database);
+
+		// setting tabel yg dipakai
 		$this->table = $table;
 	}
 
