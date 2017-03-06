@@ -33,7 +33,7 @@ class Database
 	 */
 	public function where($column, $compare, $value)
 	{
-		$this->where .= ' WHERE '.$column.' '.$compare.' '.$value;
+		$this->where .= ' WHERE '.$column.' '.$compare." '".$value."'";
 		return $this;
 	}
 
@@ -45,7 +45,7 @@ class Database
 	 */
 	public function andWhere($column, $compare, $value)
 	{
-		$this->where .= ' AND '.$column.' '.$compare.' '.$value;
+		$this->where .= ' AND '.$column.' '.$compare." '".$value."'";
 		return $this;
 	}
 
@@ -57,7 +57,7 @@ class Database
 	 */
 	public function orWhere($column, $compare, $value)
 	{
-		$this->where .= ' OR '.$column.' '.$compare.' '.$value;
+		$this->where .= ' OR '.$column.' '.$compare." '".$value."'";
 		return $this;
 	}
 
@@ -71,9 +71,9 @@ class Database
 		$values = array_values($data);
 
 		$column = implode(', ', $columns);
-		$value = implode(', ', $values);
+		$value = "'".implode("', '", $values)."'";
 		$this->query = 'INSERT INTO '.$this->table.'('.$column.') VALUES('.$value.')';
-		mysqli_query($this->query);
+		return mysqli_query($this->conn, $this->query);
 	}
 
 	/**
@@ -84,12 +84,21 @@ class Database
 	{
 		$updates = [];
 		foreach ($data as $key => $value) {
-			array_push($updates, $key.' = '.$value);
+			array_push($updates, $key." = '".$value."'");
 		}
 		$update = implode(', ', $updates);
 
 		$this->query = 'UPDATE '.$this->table.' SET '.$update.$this->where;
-		mysqli_query($this->query);
+		return mysqli_query($this->conn, $this->query);
+	}
+
+	/**
+	 * hapus data
+	 */
+	public function delete()
+	{
+		$this->query = 'DELETE FROM '.$this->table.$this->where;
+		return mysqli_query($this->conn, $this->query);
 	}
 
 	/**

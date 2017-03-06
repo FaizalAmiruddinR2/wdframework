@@ -60,8 +60,7 @@ abstract class Model
 	 */
 	public function insert($data)
 	{
-		$this->db->insert($data);
-		return $this;
+		return $this->db->insert($data);
 	}
 
 	/**
@@ -70,8 +69,15 @@ abstract class Model
 	 */
 	public function update($data)
 	{
-		$this->db->update($data);
-		return $this;
+		return $this->db->update($data);
+	}
+
+	/**
+	 * hapus data
+	 */
+	public function delete()
+	{
+		return $this->db->delete();
 	}
 
 	/**
