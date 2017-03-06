@@ -6,6 +6,9 @@ require_once 'Controller.php';
 */
 class MahasiswaController extends Controller
 {
+	/**
+	 * halaman utama
+	 */
 	public function index()
 	{
 		$mahasiswa = $this->model('mahasiswa');
@@ -13,6 +16,10 @@ class MahasiswaController extends Controller
 		$this->view('mahasiswa', $data);
 	}
 
+	/**
+	 * detail mahasiswa
+	 * @param  integer $id id mahasiswa
+	 */
 	public function detail($id)
 	{
 		$mahasiswa = $this->model('mahasiswa');
@@ -20,11 +27,17 @@ class MahasiswaController extends Controller
 		$this->view('detail', $data);
 	}
 
+	/**
+	 * tampil form tambah data
+	 */
 	public function add()
 	{
 		$this->view('formadd');
 	}
 
+	/**
+	 * simpan data baru
+	 */
 	public function store()
 	{
 		$data = $_POST;
@@ -34,6 +47,10 @@ class MahasiswaController extends Controller
 		}
 	}
 
+	/**
+	 * tampil form edit
+	 * @param  integer $id id mahasiswa
+	 */
 	public function edit($id)
 	{
 		$mahasiswa = $this->model('mahasiswa');
@@ -41,6 +58,10 @@ class MahasiswaController extends Controller
 		$this->view('formedit', $data);
 	}
 
+	/**
+	 * simpan data edit
+	 * @param  integer $id id mahasiswa
+	 */
 	public function save($id)
 	{
 		$data = $_POST;
@@ -50,6 +71,10 @@ class MahasiswaController extends Controller
 		}
 	}
 
+	/**
+	 * hapus data
+	 * @param  integer $id id mahasiswa
+	 */
 	public function delete($id)
 	{
 		$data = $_POST;
