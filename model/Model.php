@@ -19,6 +19,16 @@ abstract class Model
 	}
 
 	/**
+	 * select kolom
+	 * @param  array $data kolom yang dipilih
+	 */
+	public function select($data)
+	{
+		$this->db->select($data);
+		return $this;
+	}
+
+	/**
 	 * tambah where ke query
 	 * @param  string $column  kolom untuk dibandingkan
 	 * @param  string $compare tanda baca pembanding (=, <>, <, >)

@@ -15,6 +15,7 @@ class Database
 	private $conn;
 	private $table;
 	private $where = '';
+	private $select = '*';
 
 	function __construct($table)
 	{
@@ -23,6 +24,16 @@ class Database
 
 		// setting tabel yg dipakai
 		$this->table = $table;
+	}
+
+	/**
+	 * select kolom
+	 * @param  array $data kolom yang dipilih
+	 */
+	public function select($data)
+	{
+		$this->select = implode(', ', $data);
+		return $this;
 	}
 
 	/**
@@ -108,7 +119,7 @@ class Database
 	public function get()
 	{
 		$result = [];
-		$query = mysqli_query($this->conn, 'SELECT * FROM '.$this->table.$this->where);
+		$query = mysqli_query($this->conn, 'SELECT '.$this->select.' FROM '.$this->table.$this->where);
 		while ($obj = mysqli_fetch_object($query)) {
 	        array_push($result, $obj);
 	    }
@@ -122,7 +133,7 @@ class Database
 	 */
 	public function first()
 	{
-		$query = mysqli_query($this->conn, 'SELECT * FROM '.$this->table.$this->where.' LIMIT 1');
+		$query = mysqli_query($this->conn, 'SELECT '.$this->select.' FROM '.$this->table.$this->where.' LIMIT 1');
 		$result = mysqli_fetch_object($query);
 
 	    return $result;
