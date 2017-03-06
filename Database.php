@@ -33,7 +33,29 @@ class Database
 	 */
 	public function where($column, $compare, $value)
 	{
-		$this->where = ' WHERE '.$column.' '.$compare.' '.$value;
+		$this->where .= ' WHERE '.$column.' '.$compare.' '.$value;
+	}
+
+	/**
+	 * tambah and where ke query
+	 * @param  string $column  kolom untuk dibandingkan
+	 * @param  string $compare tanda baca pembanding (=, <>, <, >)
+	 * @param  string $value   isi yang dibandingkan
+	 */
+	public function andWhere($column, $compare, $value)
+	{
+		$this->where .= ' AND '.$column.' '.$compare.' '.$value;
+	}
+
+	/**
+	 * tambah or where ke query
+	 * @param  string $column  kolom untuk dibandingkan
+	 * @param  string $compare tanda baca pembanding (=, <>, <, >)
+	 * @param  string $value   isi yang dibandingkan
+	 */
+	public function orWhere($column, $compare, $value)
+	{
+		$this->where .= ' OR '.$column.' '.$compare.' '.$value;
 	}
 
 	/**
