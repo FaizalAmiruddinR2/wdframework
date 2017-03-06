@@ -8,7 +8,7 @@
 	<h1>Daftar Mahasiswa</h1>
 	<ul>
 	<?php foreach ($data as $value) { ?>
-		<li><?php echo $value->nama ?></li>
+		<li><a href="detail/<?php echo $value->id ?>"><?php echo $value->nama ?></a></li>
 	<?php } ?>
 	</ul>
 </body>
