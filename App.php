@@ -1,7 +1,7 @@
 <?php
 
 /**
-* 
+* buat routing
 */
 class App
 {
